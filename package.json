@@ -1,0 +1,48 @@
+{
+  "name": "basekit-starter-unified",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "manifest:generate": "node scripts/generate-manifest.js",
+    "manifest:sign": "node scripts/sign-manifest.js",
+    "manifest:validate": "node scripts/validate-manifest.js"
+  },
+  "dependencies": {
+    "@coinbase/onchainkit": "latest",
+    "@farcaster/miniapp-sdk": "^0.1.8",
+    "@tailwindcss/postcss": "^4.1.16",
+    "@tanstack/react-query": "^5",
+    "@upstash/redis": "^1.34.4",
+    "next": "15.3.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "viem": "^2.31.6",
+    "wagmi": "^2.16.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@farcaster/quick-auth": "^0.0.7",
+    "@next/eslint-plugin-next": "^15.3.4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "dotenv": "^16.4.5",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.4",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "postcss": "^8",
+    "prettier": "^3.5.3",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5"
+  }
+}

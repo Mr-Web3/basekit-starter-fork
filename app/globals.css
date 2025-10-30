@@ -1,0 +1,358 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #111111;
+    --foreground: #ffffff;
+    --app-background: #111111;
+    --app-foreground: #ffffff;
+    --app-gray: #232526;
+
+    /* OnchainKit theme variables (match DBRO-MINI-KIT-STARTER) */
+    --app-foreground-muted: #b0b0b0;
+    --app-accent: #0fcf6a;
+    --app-accent-hover: #13e68a;
+    --app-accent-active: #0fcf6a;
+    --app-accent-light: #e6fff4;
+    --app-gray-dark: #181818;
+    --app-card-bg: #181818;
+    --app-card-border: #222222;
+
+    /* App-level variables above; OnchainKit theme tokens are defined in [data-ock-theme='custom-*'] blocks below */
+  }
+
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: var(--font-inter), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: var(--font-source-code-pro), monospace;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem calc(0.25rem + 2px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    code {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* OnchainKit custom theme: 'custom' */
+@layer base {
+  [data-ock-theme='custom-light'] {
+    /* Typography & Shape */
+    --ock-font-family: 'Inter', sans-serif;
+    --ock-radius-default: 0.75rem;
+    --ock-radius-inner: 0.5rem;
+
+    /* Foreground (Text) */
+    --ock-foreground: #ffffff; /* white text */
+    --ock-foreground-muted: #ffffff; /* keep strictly white */
+    --ock-foreground-inverse: #ffffff;
+    --ock-foreground-disabled: #ffffff;
+
+    /* Backgrounds */
+    --ock-background: #000000; /* black */
+    --ock-background-hover: #0a0a0a; /* black-ish */
+    --ock-background-active: #111111; /* black-ish */
+    --ock-background-alternate: #000000;
+    --ock-background-alternate-hover: #0a0a0a;
+    --ock-background-alternate-active: #111111;
+    --ock-background-inverse: #000000;
+    --ock-background-inverse-hover: #0a0a0a;
+    --ock-background-inverse-active: #111111;
+    --ock-background-reverse: #000000;
+
+    /* Primary (Only green) */
+    --ock-primary: #1bf696;
+    --ock-primary-hover: #1bf696;
+    --ock-primary-active: #1bf696;
+    --ock-primary-washed: #000000; /* keep palette strictly black/white/green */
+    --ock-primary-disabled: #1bf696;
+
+    /* Secondary (black surfaces) */
+    --ock-secondary: #000000;
+    --ock-secondary-hover: #0a0a0a;
+    --ock-secondary-active: #111111;
+
+    /* States (restrict to green) */
+    --ock-error: #1bf696;
+    --ock-warning: #1bf696;
+    --ock-success: #1bf696;
+    --ock-success-background: #000000;
+
+    /* Lines (borders green) */
+    --ock-line: #1bf696;
+
+    /* Legacy tokens override to ensure all components match strictly */
+    --ock-text-foreground: #ffffff;
+    --ock-text-foreground-muted: #ffffff;
+    --ock-text-inverse: #ffffff;
+    --ock-text-primary: #1bf696;
+    --ock-bg-default: #000000;
+    --ock-bg-default-hover: #0a0a0a;
+    --ock-bg-default-active: #111111;
+    --ock-bg-alternate: #000000;
+    --ock-bg-alternate-hover: #0a0a0a;
+    --ock-bg-alternate-active: #111111;
+    --ock-bg-inverse: #000000;
+    --ock-bg-inverse-hover: #0a0a0a;
+    --ock-bg-inverse-active: #111111;
+    --ock-bg-primary: #1bf696;
+    --ock-bg-primary-hover: #1bf696;
+    --ock-bg-primary-active: #1bf696;
+    --ock-icon-color-primary: #1bf696;
+    --ock-line-primary: #1bf696;
+    --ock-line-default: #1bf696;
+    --ock-toast-bg: #000000;
+    --ock-toast-border: #1bf696;
+    --ock-toast-text: #ffffff;
+  }
+
+  [data-ock-theme='custom-dark'] {
+    /* Typography & Shape */
+    --ock-font-family: 'Inter', sans-serif;
+    --ock-radius-default: 0.75rem;
+    --ock-radius-inner: 0.5rem;
+
+    /* Foreground (Text) */
+    --ock-foreground: #ffffff; /* white text */
+    --ock-foreground-muted: #ffffff; /* keep strictly white */
+    --ock-foreground-inverse: #ffffff;
+    --ock-foreground-disabled: #ffffff;
+
+    /* Backgrounds */
+    --ock-background: #000000; /* black */
+    --ock-background-hover: #0a0a0a; /* black-ish */
+    --ock-background-active: #111111; /* black-ish */
+    --ock-background-alternate: #000000;
+    --ock-background-alternate-hover: #0a0a0a;
+    --ock-background-alternate-active: #111111;
+    --ock-background-inverse: #000000;
+    --ock-background-inverse-hover: #0a0a0a;
+    --ock-background-inverse-active: #111111;
+    --ock-background-reverse: #000000;
+
+    /* Primary (Only green) */
+    --ock-primary: #1bf696;
+    --ock-primary-hover: #1bf696;
+    --ock-primary-active: #1bf696;
+    --ock-primary-washed: #000000;
+    --ock-primary-disabled: #1bf696;
+
+    /* Secondary (black surfaces) */
+    --ock-secondary: #000000;
+    --ock-secondary-hover: #0a0a0a;
+    --ock-secondary-active: #111111;
+
+    /* States (restrict to green) */
+    --ock-error: #1bf696;
+    --ock-warning: #1bf696;
+    --ock-success: #1bf696;
+    --ock-success-background: #000000;
+
+    /* Lines (borders green) */
+    --ock-line: #1bf696;
+
+    /* Legacy tokens override to ensure all components match strictly */
+    --ock-text-foreground: #ffffff;
+    --ock-text-foreground-muted: #ffffff;
+    --ock-text-inverse: #ffffff;
+    --ock-text-primary: #1bf696;
+    --ock-bg-default: #000000;
+    --ock-bg-default-hover: #0a0a0a;
+    --ock-bg-default-active: #111111;
+    --ock-bg-alternate: #000000;
+    --ock-bg-alternate-hover: #0a0a0a;
+    --ock-bg-alternate-active: #111111;
+    --ock-bg-inverse: #000000;
+    --ock-bg-inverse-hover: #0a0a0a;
+    --ock-bg-inverse-active: #111111;
+    --ock-bg-primary: #1bf696;
+    --ock-bg-primary-hover: #1bf696;
+    --ock-bg-primary-active: #1bf696;
+    --ock-icon-color-primary: #1bf696;
+    --ock-line-primary: #1bf696;
+    --ock-line-default: #1bf696;
+    --ock-toast-bg: #000000;
+    --ock-toast-border: #1bf696;
+    --ock-toast-text: #ffffff;
+  }
+}
+
+/* OnchainKit element overrides: enforce black bg + green borders */
+[data-testid="ockConnectButton"] {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #1bf696 !important;
+  padding: 4px 10px !important;
+  min-height: 38px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+
+/* Wallet modal option buttons: green borders */
+[data-testid="ockModalContent"] button,
+[data-testid="ockModalContent"] [role="button"],
+[data-testid*="ockWalletOption"],
+[data-testid*="ockWalletListItem"],
+[data-testid*="ockWalletConnector"] {
+  border: 1px solid #1bf696 !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Stronger target: the specific OCK utility classes used on modal wallet options */
+[data-testid="ockModalContent"] .ock\:rounded-ock-default.ock\:text-base,
+[data-testid="ockModalContent"] button.ock\:rounded-ock-default.ock\:text-base,
+[data-testid="ockModalContent"] [role="button"].ock\:rounded-ock-default.ock\:text-base {
+  border: 1px solid #1bf696 !important;
+}
+
+/* Modal surface */
+[data-testid="ockModalOverlay"],
+[data-testid="ockModalContent"] {
+  background-color: #000000 !important;
+  border: 1px solid #1bf696 !important;
+}
+
+/* Ensure wallet option text-base buttons also show green border */
+[data-testid="ockModalContent"] .ock\:text-base,
+.ock\:text-base {
+  background-color: #111111 !important;
+  border: 1px solid #111111 !important;
+  color: #ffffff !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: bold !important;
+  
+}
+
+/* Enlarge app icon inside wallet modal */
+[data-testid="ockModalContent"] img.ock\:object-cover {
+  width: 96px !important;
+  height: 96px !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* If the icon is targeted by alt text, fallback rule */
+[data-testid="ockModalContent"] img[alt*="icon"] {
+  width: 96px !important;
+  height: 96px !important;
+}
+
+/* Connected wallet: add green border around account chip (header) */
+[data-testid*="ockConnectWallet_Connected"],
+[data-testid*="ockConnected"] {
+  border: 1px solid #1bf696 !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  padding: 4px 10px !important;
+  min-height: 38px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+
+/* Ensure inner account chip content also scales down */
+.ockConnectAccountButtonInner {
+  padding: 4px 10px !important;
+  min-height: 32px !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+}
+
+/* Dropdown identity card: green border only inside dropdown to avoid double borders */
+[data-testid*="ockWalletDropdown"] [data-testid="ockIdentityLayout_container"] {
+  /* border: 1px solid #1bf696 !important; */
+  border-radius: 0.75rem !important;
+  /* padding: 0.5rem !important; */
+  background-color: #000000 !important;
+}
+
+/* Ensure inner identity text does not add its own border (avoid double) */
+[data-testid="ockIdentityLayout_container"] [data-testid="ockIdentity_Text"] {
+  border: none !important;
+}
+
+/* (moved above) */
+
+/* Remove borders on Disconnect control in wallet dropdown */
+[data-testid*="ockWalletDropdownDisconnect"],
+[data-testid*="ockWalletDropdownDisconnect"] *,
+[data-testid*="ockWalletDropdown"] [data-testid*="Disconnect"],
+[data-testid*="ockWalletDropdown"] .ock\:text-base {
+  border: none !important;
+}
+
+/* Also ensure dropdown account rows keep no borders */
+[data-testid*="ockWalletDropdown"] .ock\:rounded-ock-default.ock\:text-base,
+[data-testid*="ockWalletDropdown"] button.ock\:rounded-ock-default.ock\:text-base,
+[data-testid*="ockWalletDropdown"] [role="button"].ock\:rounded-ock-default.ock\:text-base {
+  border: none !important;
+}
+
+/* Mobile-only: remove border for Disconnect control only */
+@media (max-width: 768px) {
+  .ock\:text-base {
+    border: none;
+  }
+
+  .ock-disconnect-svg {
+    margin-left: 10px !important;
+  }
+
+  /* Make sheet top border green on mobile */
+  [data-testid="ockSheet"].ock\:border-t,
+  [data-testid="ockSheet"] .ock\:border-t {
+    border-top: 1px solid #1bf696 !important;
+  }
+}
+
+/* Size tuning: smaller when NOT connected, comfortable when connected */
+/* Disconnected state (Connect button) */
+/* [data-testid="ockConnectButton"],
+[data-testid*="ockConnectWallet"]:not([data-testid*="ockConnectWallet_Connected"]) {
+  padding: 6px 12px !important;
+  min-height: 32px !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+} */
+
+/* Connected state (account button) */
+/* [data-testid*="ockConnectWallet_Connected"],
+.ockConnectAccountButtonInner {
+  padding: 8px 14px !important;
+  min-height: 36px !important;
+  font-size: 13px !important;
+} */
