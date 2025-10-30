@@ -49,7 +49,7 @@ export default function App() {
                   onClick={() =>
                     openUrl(
                       process.env.NEXT_PUBLIC_REPO_FORK_URL ||
-                        "https://github.com/your-org/your-repo/fork",
+                        "https://github.com/Mr-Web3/basekit-starter-fork",
                     )
                   }
                   className="inline-flex items-center gap-3 px-6 py-3 rounded-lg bg-(--app-accent) text-black font-semibold shadow-lg hover:opacity-90 transition-opacity border border-[#10d67f]"

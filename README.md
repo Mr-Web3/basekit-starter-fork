@@ -26,7 +26,7 @@ Before getting started, make sure you have:
 ### 1. Clone this repository 
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Mr-Web3/basekit-starter-fork
 cd basekit-starter-improved
 ```
 
