@@ -1,8 +1,8 @@
 "use client";
 
 import { useAccount } from "wagmi";
-import { useMiniKit } from "@coinbase/onchainkit/minikit";
 import { useState, useEffect } from "react";
+import { sdk } from "@farcaster/miniapp-sdk";
 
 export interface UserProfile {
   address: string;
@@ -17,34 +17,47 @@ export interface UserProfile {
 
 export function useUserProfile() {
   const { address, isConnected } = useAccount();
-  const { context } = useMiniKit();
   const [profile, setProfile] = useState<UserProfile | null>(null);
 
   // Farcaster profile comes from MiniKit context; no on-chain read needed
 
   useEffect(() => {
-    if (!isConnected || !address) {
-      setProfile(null);
-      return;
-    }
+    let cancelled = false;
 
-    // Extract profile data from MiniKit context - using context.user like your working app
-    const user = context?.user;
+    const load = async () => {
+      if (!isConnected || !address) {
+        if (!cancelled) setProfile(null);
+        return;
+      }
 
-    const userProfile: UserProfile = {
-      address,
-      isConnected,
-      fid: user?.fid as number | undefined,
-      username: user?.username as string | undefined,
-      displayName: user?.displayName as string | undefined,
-      profilePicture: user?.pfpUrl as string | undefined,
-      ensName: undefined,
-      baseName: undefined,
+      try {
+        const inMini = await sdk.isInMiniApp();
+        const ctx = inMini ? await sdk.context : undefined;
+        const user = ctx?.user;
+
+        const userProfile: UserProfile = {
+          address,
+          isConnected,
+          fid: user?.fid,
+          username: user?.username,
+          displayName: user?.displayName,
+          profilePicture: user?.pfpUrl,
+          ensName: undefined,
+          baseName: undefined,
+        };
+        if (!cancelled) setProfile(userProfile);
+      } catch {
+        if (!cancelled) {
+          setProfile({ address, isConnected, ensName: undefined, baseName: undefined });
+        }
+      }
     };
 
-    console.log("🔍 User Profile Created:", userProfile);
-    setProfile(userProfile);
-  }, [address, isConnected, context]);
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [address, isConnected]);
 
   return {
     profile,

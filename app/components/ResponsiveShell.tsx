@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useMiniKit } from "@coinbase/onchainkit/minikit";
+import { sdk } from "@farcaster/miniapp-sdk";
 import Header from "./Header";
 import MobileNavigation from "./MobileNavigation";
 import Footer from "./Footer";
@@ -12,7 +12,6 @@ type ResponsiveShellProps = {
 };
 
 export default function ResponsiveShell({ children }: ResponsiveShellProps) {
-  const { isFrameReady } = useMiniKit();
   const [isMobile, setIsMobile] = useState(false);
   const [isMiniApp, setIsMiniApp] = useState(false);
   const [initialized, setInitialized] = useState(false);
@@ -20,19 +19,20 @@ export default function ResponsiveShell({ children }: ResponsiveShellProps) {
   useEffect(() => {
     const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
 
-    const detectMiniApp = () => {
+    const detectMiniApp = async () => {
       try {
-        const inFrame = window !== window.top;
-        const userAgent = navigator.userAgent || "";
-        const referrer = document.referrer || "";
-        const href = window.location?.href || "";
-        const inMini =
-          inFrame ||
-          !!isFrameReady ||
-          href.includes("frame") ||
-          referrer.includes("farcaster") ||
-          userAgent.includes("Farcaster");
-        setIsMiniApp(inMini);
+        const inMini = await sdk.isInMiniApp();
+        if (inMini) {
+          setIsMiniApp(true);
+        } else {
+          const inFrame = window !== window.top;
+          const userAgent = navigator.userAgent || "";
+          const referrer = document.referrer || "";
+          const href = window.location?.href || "";
+          setIsMiniApp(
+            inFrame || href.includes("frame") || referrer.includes("farcaster") || userAgent.includes("Farcaster")
+          );
+        }
       } catch {
         setIsMiniApp(false);
       }
@@ -47,7 +47,7 @@ export default function ResponsiveShell({ children }: ResponsiveShellProps) {
       window.removeEventListener("resize", updateIsMobile);
       clearTimeout(t);
     };
-  }, [isFrameReady]);
+  }, []);
 
   const showMobileLayout = isMobile || isMiniApp;
 

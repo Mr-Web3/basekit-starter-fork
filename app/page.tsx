@@ -1,6 +1,7 @@
 "use client";
 
-import { useMiniKit, useOpenUrl } from "@coinbase/onchainkit/minikit";
+import { useOpenUrl } from "@coinbase/onchainkit/minikit";
+import { sdk } from "@farcaster/miniapp-sdk";
 import { useEffect } from "react";
 import {
   FaRocket,
@@ -18,15 +19,12 @@ import UserProfileCard from "./components/UserProfileCard";
 import BuyComponents from "./components/Buy";
 
 export default function App() {
-  const { isFrameReady, setFrameReady } = useMiniKit();
   const openUrl = useOpenUrl();
 
   // Initialize the miniapp
   useEffect(() => {
-    if (!isFrameReady) {
-      setFrameReady();
-    }
-  }, [setFrameReady, isFrameReady]);
+    sdk.actions.ready().catch(() => {});
+  }, []);
 
   return (
       <div className="flex flex-col min-h-screen font-sans text-(--app-foreground) mini-app-theme from-(--app-background) to-(--app-gray)">
